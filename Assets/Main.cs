@@ -248,5 +248,4 @@ public class Main : MonoBehaviour
 	{
 		gameOverScreen.SetActive(true);
 	}
-
 }
