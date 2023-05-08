@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    //git test
     public RoomSelect currentRoom;
     public GameObject characterMapView;
     public GameObject camera;
@@ -16,6 +15,8 @@ public class Main : MonoBehaviour
     public Enemy enemy;
     public bool playerTurn = true;
     public GameObject endTurnButton;
+    public Vector3 battlefieldCamera = new Vector3(20.8f, 0, -10);
+    public Vector3 labyrinthCamera = new Vector3(0, 0, -10);
 
     private Collider2D UI_blocker;
     private Animation characterAnimations;
@@ -43,23 +44,43 @@ public class Main : MonoBehaviour
         if (room.connectedRooms.Contains(currentRoom))
         {
             currentRoom = room;
-            if(currentRoom.roomContent.GetType() == typeof(RoomEnemy)) {
+            if(currentRoom.roomContent != null && currentRoom.roomContent.GetType() == typeof(RoomEnemy)) {
                 startFight((RoomEnemy)room.roomContent);
             }
-            characterMapView.transform.position = room.transform.position;
+            Vector3 newPos = room.transform.position;
+            newPos.z = -3;
+            characterMapView.transform.position = newPos;
+             
         }
     }
     void startFight(RoomEnemy room)
     {
         //camera.transform.position = new Vector3(20.8f, 0, -10);
-        move(camera, new Vector3(20.8f, 0, -10), 1);
+        move(camera, battlefieldCamera, 1);
 
         disableUI(1f);
+
+        handCards = removeCardsFromHands(handCards);
 
         drawCards(3);
         moveAndScaleCards(true);
 
         room.enter();
+    }
+    public void endFight()
+    {
+        disableUI(1f);
+        move(camera, labyrinthCamera, 1);
+        Destroy(enemy.gameObject);
+
+    }
+    List<GameObject> removeCardsFromHands(List<GameObject> handCards)
+    {
+        foreach (var card in handCards)
+        {
+            Destroy(card.gameObject);
+        }
+        return new List<GameObject>();
     }
     public void onClickedCard(Card card)
     {

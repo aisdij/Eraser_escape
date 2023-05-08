@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private int energy;
     private Main main;
 
-    private const float useCardScale = 3f;
+    private const float useCardScale = 1.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,9 +33,10 @@ public class Enemy : MonoBehaviour
     public void receiveDamage(int damage)
     {
         health -= damage;
-        if(health < 0)
+        if(health <= 0)
         {
             health = 0;
+            main.endFight();
         }
         hpbar.scaleHpBar(health, maxHealth);
     }
@@ -100,20 +101,23 @@ public class Enemy : MonoBehaviour
 
         energy -= card.energyCost;
         handCards.Remove(card.gameObject);
-        GameObject handcard = Instantiate(card.gameObject, new Vector3(40f, 0f, -1f), Quaternion.identity);
-        main.move(handcard, new Vector3(20.8f, 0, -1), 0.15f);
-        main.scale(handcard, Vector3.one * useCardScale, 0.15f);
+        
+        main.move(card.gameObject, new Vector3(20.8f, 0, -1), 0.15f);
+        main.scale(card.gameObject, Vector3.one * useCardScale, 0.15f);
 
         StartCoroutine(destroyCard());
 
         IEnumerator destroyCard()
         {
             yield return new WaitForSeconds(1.5f);
-
-            animation.Play(card.animation);
-            yield return new WaitForSeconds(card.damageDelay);
+            if(animation != null)
+            {
+                animation.Play(card.animation);
+                yield return new WaitForSeconds(card.damageDelay);
+            }
+               
             main.receiveDamage(card.damage);
-            Destroy(handcard);
+            Destroy(card.gameObject);
         }
 
         return true;

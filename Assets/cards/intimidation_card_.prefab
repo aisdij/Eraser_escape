@@ -52,7 +52,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 9a2ee93cc08519e43be9341adb2050de, type: 3}
   energyCost: 0
   damageDelay: 0
-  animation: 
+  animation: discourage
 --- !u!1001 &1213856117649578397
 PrefabInstance:
   m_ObjectHideFlags: 0

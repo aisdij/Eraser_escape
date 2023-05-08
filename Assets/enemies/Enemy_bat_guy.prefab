@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320760278832944948}
   - component: {fileID: 5005769781883128190}
+  - component: {fileID: 8993765868761250396}
   m_Layer: 0
   m_Name: Enemy_bat_guy
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4541304875333836399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.329697, y: 0, z: -0.98}
+  m_LocalPosition: {x: 27.329697, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52,8 +53,25 @@ MonoBehaviour:
   - {fileID: 3497192087303415134, guid: 4f31d390d52f3414486bc97a5c931a2c, type: 3}
   handCards: []
   hpbar: {fileID: 4430134222675009928}
-  animation: {fileID: 0}
+  animation: {fileID: 8993765868761250396}
   maxEnergy: 2
+--- !u!111 &8993765868761250396
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4541304875333836399}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: ba87f51879873ac4f9132f606fd3aa1d, type: 2}
+  - {fileID: 7400000, guid: 82b07b4aa078bd84184157e3beb2f99f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &7890748668914041622
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930628581342702061, guid: d7d0c339d495f5d40b5bb219cc2a06c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.0051255
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7930628581342702061, guid: d7d0c339d495f5d40b5bb219cc2a06c3, type: 3}
       propertyPath: m_LocalRotation.w
